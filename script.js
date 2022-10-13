@@ -30,15 +30,27 @@ const renderRates = (rates) => {
   })
 }
 
+const clearCurrencyInput = () => {
+  const currencyInputElement = document.getElementById('currency-input');
+  currencyInputElement.value = '';
+}
+
 const handleSearchEvent = async () => {
   const currencyElement = document.getElementById('currency-input');
   const currencyValue = currencyElement.value;
+
+  if (currencyValue === '') {
+    alert('Preencha o campo de pesquisa');
+    return;
+  }
 
   const object = await fetchExchangeRates(currencyValue);
 
   clearList();
   renderRates(object.rates);
   renderBaseCurrencyTitle(object.base);
+
+  clearCurrencyInput();
 }
 const setupHtmlElements = () => {
   const searchButton = document.getElementById('search-button');
