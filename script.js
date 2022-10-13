@@ -1,3 +1,4 @@
+const CACHE_KEY = 'CURRENCY_LIST';
 const clearList = () => {
   const currencyList = document.getElementById('currency-list');
   currencyList.innerHTML = '';
@@ -41,10 +42,12 @@ const handleSearchEvent = async () => {
 
   if (currencyValue === '') {
     alert('Preencha o campo de pesquisa');
-    return;
+
+    return clearList();;
   }
 
   const object = await fetchExchangeRates(currencyValue);
+  localStorage.setItem(CACHE_KEY, JSON.stringify(object));
 
   clearList();
   renderRates(object.rates);
@@ -59,4 +62,11 @@ const setupHtmlElements = () => {
 
 window.onload = () => {
   setupHtmlElements();
+
+  const object = JSON.parse(localStorage.getItem(CACHE_KEY));
+  if(object) {
+    const { base , rates} = object;
+    renderRates(rates);
+    renderBaseCurrencyTitle(base);
+  }
 };
