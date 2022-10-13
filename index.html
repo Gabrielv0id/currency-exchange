@@ -10,6 +10,22 @@
 	<script src="api.js"></script>
 </head>
 <body>
-  
+  <header class="header">
+		<h1>Casa de Câmbio</h1>
+	</header>
+
+	<main class="main-section">
+
+		<div>
+			<label for="currency-input">Digite a moeda: </label>
+			<input placeholder='USD' id='currency-input' maxlength='3' type="text">
+		</div>
+
+		<button id="search-button" class="search-button">Pesquisar</button>
+
+		<h2 id="title-base" class="title-base"></h2>
+		<ul id="currency-list"></ul>
+	</main>
+
 </body>
 </html>
