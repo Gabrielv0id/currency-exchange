@@ -15,7 +15,7 @@ const fetchExchangeRates = async (currency) => {
 
   // Transformar o retorno em json
   const json = await response.json();
-  
+
   //retornar as taxas de conversão
   const exchangeRates = {
     rates: json.rates,
@@ -27,6 +27,3 @@ const fetchExchangeRates = async (currency) => {
     throw error;
   }
 };
-
-fetchExchangeRates('BRL')
-  .then((exchangeRates) => console.log(exchangeRates))
